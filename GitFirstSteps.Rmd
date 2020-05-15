@@ -1,0 +1,220 @@
+---
+title: "SCProject"
+author: "Robin Carron, Quentin Roduit"
+date: "11 mai 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Version Control
+
+Version Control is a software tool that help to track changes over time.
+It keeps track of all the changes that are made to any documents that we have in our project in a database.
+It allows the team to go back to a previous version if a mistake has been made or just compare both documents to find what happen while minimizing disruptions to all members.
+
+Advantages:
+
+* Make backups
+* keep history
+* View changes
+* Experiment (if you want try new things to see if it works, break off a section, work on it, iterate and then put it back in the main project)
+* Collaborate
+
+There is two kind of version control
+
+1. Centralized -> the entire project is stored in a central server
+2. Distributed -> evryone has a local copy of the entire work
+
+[link](https://www.atlassian.com/git/tutorials/what-is-version-control)
+
+# Git & Github
+
+## How to start with Git & Github
+
+First when you have created your file path in your local computer, open the Git Bash.
+
+File path here means the location of your final folder:
+
+:/c/Users/"computer name"/Documents/"path choose by the editor"
+
+Once you have created this path and you are in the Git Bash, go to the location where you would have the repository:
+
+* Use the command `$ pwd` in order to see in which working directory we are.
+* Use the command `$ cd` to change the directory.
+
+
+1. Tap `$ pwd`
+2. Check where you are
+3. Tap `$ cd` Documents/"path choose by the editor"
+
+At that time, we are in the right working directory.
+
+We have two options:
+
+1. Initialize a git in our local computer
+2. Clone a git hosted in a remote location -> Github
+
+## Initialize a git in our local computer
+
+### Config of our profile
+
+First, to work quietly in Git Bash, we must setting up our `user.name` and `user.email`
+The reason to do so is because when we are working on a project, some of us are going to do changes and modifications. It's a way to know who did what and track all changes.
+
+1. Open Git Bash
+2. Tap `$ git config --global user.name "your name or github name"
+3. Tap `$ git config --global user.email "your email address"
+4. Tap `$ git config --list
+
+### Creating File from Git Bash
+
+It's possible to create a File directly from the Git Bash.
+
+* Tap `$ touch "file name" and the file will appear in the location that you are in the Git Bash
+
+### Initialized .git folder
+
+Then you want that folder become a `.git` so in the Git Bash
+
+* Tap`$ git init`
+
+This is will initialize the git file. Those kind of file are not visible if our settings doesn't allow hidden files.
+
+* path to see hidden files: start button > control panel > Appearance and Personalization > Folder Options > View > Advanced settings > Show hidden files, ...
+
+As we have initialized `.git`file with the command `$ git init` we can start to use git commands.
+
+Once this is done, we can start by the command `$ git status` in order to know which documents are tracked and which ones aren't.
+
+### Adding documents to our git repository
+
+To add something to the repository, we must use the command `$ git add "name of the document + extension"` or if we have done many changes we can use the command `$ git add .`
+
+Once it's done, we use the command `$ git status` to know what is in the staging area.
+
+#### Wrong manipulation
+
+Now, let's take the example of we did a wrong manipulation and we want to remove the file in the staging area. We must use the command `$ git rm --cached "name of the file + extension"`
+
+And to display if it was removed, we can just tap `$ git status`
+
+### Committing our changes to the repository
+
+Once all our changes are done and push into the staging area, we must push them into the repository.
+To do so, we must use the command `$ git command -m "message to explain what you did"`
+
+If you do not put the message, a dialog box will appear telling you to add a message for your commit.
+
+In this dialog box, you will put a message for your commit. To do so, you must first tap "i" in order to unlock the keyboard and then tap the message.
+
+To get out of the dialog box, we must click on escape on the keyboard and then tap `:wq`
+
+and then we can tap the command `$ git status` to see that our changes have been committed.
+
+The other option to avoid the dialog box for the commit is to tap the following command:
+
+`$ git commit -m "message to explain what you did"` 
+
+What is important to do when you are tapping the message is to start with a verb. For example: Creating the project
+
+### gitignore
+
+This is a folder that allows us to put documents or file that we don't want in our repository.
+To do so we must create a file `.gitignore`
+
+Use the command `$ touch .gitignore`
+
+### Creating Branch to separate work
+
+Creating a branch will allow us to work on a experiment and other documents without mixing it with the master file. If the file is ok for us after that we will be able to merge it with the master file.
+
+to create a branch, we must use the command `$ git branch "name of the branch"`
+Then to go in the branch we must use the command `$ git checkout "name of the branch"`
+
+Once we are in this branch, we can create new file, docs or whatever you want by using the command `$ touch "name of the file + extension"`
+
+Once all documents are done and modified, re do all we talked about.
+
+1. git add .
+2. git commit -m ""
+
+To switch in the master file, we just need to use the command `$ git checkout "name of the master branch"`often called master
+
+Everything done in the file that we created and in other files will be added in the new branch.
+
+Once we have finished the new functionalities and we are ready to merge in the master file, we can use the command `$ git merge "name of the branch created"` 
+
+At that time, a dialog bow will happen.
+
+* Tap "i" to be able to write in the dialog box -> write the message
+* Click on `escape` and then `:wq`
+
+Now, the merging is done and all documents created in the new branch will be in the master file.
+
+
+## Add a git hosted in a remote location -> Github
+
+First of all you must have a Github account to create a remote repository.
+Once you are in github, click on create a new repository and follow what they are asking you to fill in.
+
+Then, to add this repository to your local computer use the following commands:
+
+1. `$ git remote` will show you all your remote repositories
+2. `$ git remote add origin https://github.com/name on github/name of the repository.git`
+3. `$ git remote` will display origin to tell you that you have a remote repository
+
+Now two things are possible:
+
+1. You have a folder on your local computer and you want to push it on the remote repository
+2. You update the repository online and you want to pull changes on your local computer
+
+To push on the remote repository, use the command `$ git push -u origin master` master means the local repository
+To pull from the remote repository to your local computer `$ git push -u origin master` master means the local repository
+
+Once it's done, you can refresh the remote repository and your changes will be there.
+
+## Clone a git hosted in a remote location -> Github
+
+This is the same as adding a remote repository.
+
+1. `$ git clone https://github.com/name on github/name of the repository.git`
+
+Do not forget to use `$ git pull` once you start working on your local computer and `$ git push` once you are done with your work.
+
+## Basic command to do in Git Bash
+
+* View changes between working copy and repository:
+    + `$ git diff` will show you changes between the changes in the working copy and the last commit (file save in the repository).
+
+* View changes between staging area and repository:
+    + `$ git diff --staged` will show changes between what we have added in the staging area with the command `$ git add .`
+
+* Delete file in bash
+    + `$ git rm "file name"` will delete the file from the working copy and we must spread it on the repository as well -> `$ git commit -m "message that we want to see"`
+    + `$ rm -rf name of the file/` to delete the directory from your local computer
+
+* Unstage file from staging area
+    + `$ git reset HEAD *` -> all file
+    + `$ git reset HEAD <namefile>` -> only one file
+
+* Explore your history
+    + `$ git log` will show you a list of all the commits on your current branch
+    + `$ git log -10` will only show the 10 most recent commits
+    + `$ git log --oneline` will show you the commit history by displaying the first seven characters of the SHA-1 hash and commit message of the commits on the current branch.
+
+* Remove uncommitted changes
+    + To undo all changes we've introduced since the last commit use `$ git reset --hard`
+    + To undo changes done in only one file use `$ git checkout --path/to/the/file.txt
+
+* Remove committed changes
+    + To change the most recent commit message `$ git commit --amend -m "Add your correct commit message here"`
+    + To add an additional file to a commit I just made `$ git add path/to/changed/file` and the new commit message `$ git --amend -m "Add your updated message"`
+    + To remove a commit `$ git reset <commit_ID>` more simple you can use `$ git reset HEAD~3` will remove the three previous commit. The command reset will remove the commit not push into the remote repository.
+    + To remove a commit push into the remote repository `$ git revert <commit_ID>` here the commit ID means the commit that we want to delete. It will undo all changes and create a new commit.
+    + To go back to a previous commit `$ git checkout <commit_ID>path/to/file.txt` and then commit this change. Git checkout is more used to discard changes not push into the staging area.
+
+
+
